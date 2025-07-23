@@ -1,18 +1,28 @@
-def insertion_sort(alist):
-    for i in range(1, len(alist)):
-        temp = alist[i]
-        j = i - 1
-        while j >= 0 and temp < alist[j]:
-            alist[j + 1] = alist[j]
-            j -= 1
-        alist[j + 1] = temp
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, precision_score, confusion_matrix, f1_score, classification_report
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Get input from user
-alist = input("Enter the list of numbers: ").split()
-alist = [int(x) for x in alist]
-
-# Perform sorting
-insertion_sort(alist)
-
-# Display sorted list
-print("Sorted List:", alist)
+data = load_iris()
+X = data.data
+y = data.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+y_pred = knn.predict(X_test)
+acc = accuracy_score(y_test, y_pred)
+print("Accuracy:", acc)
+prec = precision_score(y_test, y_pred, average='macro')
+print("Precision:", prec)
+f1 = f1_score(y_test, y_pred, average='macro')
+print("F1 Score:", f1)
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm, annot=True, cmap='Blues', fmt='d',xticklabels=data.target_names,yticklabels=data.target_names)
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
+print("\nClassification Report:\n", classification_report(y_test, y_pred, target_names=data.target_names))
