@@ -1,0 +1,21 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import CategoricalNB
+from sklearn.metrics import accuracy_score
+data = pd.DataFrame({
+    'feature1': [0, 1, 0, 1, 0, 1],
+    'feature2': [1, 0, 1, 0, 1, 0],
+    'feature3': [0, 0, 1, 1, 0, 1],
+    'job_offer': [0, 1, 0, 1, 0, 1]
+})
+X = data.drop(columns='job_offer')
+y = data['job_offer']
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.2, random_state=42)
+model = CategoricalNB()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy}")
+new_sample = pd.DataFrame([[1, 0, 1]], columns=X.columns)
+job_offer_pred = model.predict(new_sample)[0]
+print(f"Job Offer Prediction (0=No, 1=Yes): {job_offer_pred}")
