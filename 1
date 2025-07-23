@@ -1,18 +1,17 @@
-#1
-m1 = int(input("Enter the marks in the first test: "))
-m2 = int(input("Enter the marks in the second test: "))
-m3 = int(input("Enter the marks in the third test: "))
-
-# Calculate the total of the best two marks
-if m1 > m2:
-    if m2 > m3:
-        total = m1 + m2
-    else:
-        total = m1 + m3
-elif m1 > m3:
-    total = m1 + m2
-else:
-    total = m2 + m3
-
-avg = total / 2
-print("The average of the best two test marks is:", avg)
+from sklearn.linear_model import LinearRegression
+import numpy as np
+import matplotlib.pyplot as plt
+# Sample data
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([1, 4, 3, 6, 8])
+# Model
+model = LinearRegression()
+model.fit(X, y)
+# Prediction
+y_pred = model.predict(X)
+# Plot
+plt.scatter(X, y, color='blue', label='Actual')
+plt.plot(X, y_pred, color='red', label='Predicted')
+plt.title('Linear Regression')
+plt.legend()
+plt.show()
