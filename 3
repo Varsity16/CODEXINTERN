@@ -1,15 +1,12 @@
-#3
-def fn(n):
-    if n == 1:
-        return 0
-    elif n == 2:
-        return 1
-    else:
-        return fn(n - 1) + fn(n - 2)
-
-num = int(input("Enter a Number: "))
-
-if num > 0:
-    print("fn(", num, ") = ", fn(num), sep="")
-else:
-    print("Error in input")
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import load_iris
+from sklearn import tree
+import matplotlib.pyplot as plt
+# Load dataset
+iris = load_iris()
+clf = DecisionTreeClassifier()
+clf = clf.fit(iris.data, iris.target)
+# Visualize the tree
+plt.figure(figsize=(10, 6))
+tree.plot_tree(clf, filled=True, feature_names=iris.feature_names,class_names=iris.target_names)
+plt.show()
