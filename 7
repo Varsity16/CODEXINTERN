@@ -1,13 +1,19 @@
-import numpy as np 
-import matplotlib.pyplot as plt 
-from scipy.cluster.hierarchy import linkage, dendrogram 
-points = np.array([ [1, 2], [2, 3], [5, 8], [6, 9], [3, 3] ]) 
-labels = ['A', 'B', 'C', 'D', 'E'] 
-linked = linkage(points, method='single') 
-plt.figure(figsize=(8, 5)) 
-dendrogram(linked, labels=labels, distance_sort='ascending') 
-plt. tle('Single Linkage Hierarchical Clustering') 
-plt.xlabel('Points') 
-plt.ylabel('Euclidean Distance') 
-plt.grid(True) 
-plt.show() 
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import linkage, dendrogram
+points = np.array([
+    [1, 2],  # A
+    [2, 3],  # B
+    [5, 8],  # C
+    [6, 9],  # D
+    [3, 3],  # E
+])
+labels = ['A', 'B', 'C', 'D', 'E']
+linked = linkage(points, method='single')
+plt.figure(figsize=(8, 5))
+dendrogram(linked, labels=labels, distance_sort='ascending')
+plt.title('Single Linkage Hierarchical Clustering')
+plt.xlabel('Points')
+plt.ylabel('Euclidean Distance')
+plt.grid(True)
+plt.show()
