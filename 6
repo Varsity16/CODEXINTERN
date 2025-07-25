@@ -1,0 +1,32 @@
+from sklearn import datasets 
+from sklearn.model_selection import train_test_split 
+from sklearn.svm import SVC 
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, 
+confusion_matrix, classification_report 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+iris = datasets.load_iris() 
+X = iris.data 
+y = iris.target 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42) 
+svm = SVC(kernel='linear') 
+svm.fit(X_train, y_train) 
+y_pred = svm.predict(X_test) 
+accuracy = accuracy_score(y_test, y_pred) 
+precision = precision_score(y_test, y_pred, average='macro') 
+recall = recall_score(y_test, y_pred, average='macro') 
+f1 = f1_score(y_test, y_pred, average='macro') 
+conf_matrix = confusion_matrix(y_test, y_pred) 
+print("Accuracy:", accuracy) 
+print("Precision:", precision) 
+print("Recall:", recall) 
+print("F1 Score:", f1) 
+print("\nClassification Report:\n", classification_report(y_test, y_pred)) 
+plt.figure(figsize=(6, 4)) 
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=iris.target_names, 
+yticklabels=iris.target_names) 
+plt.xlabel('Predicted') 
+plt.ylabel('True') 
+plt.title('Confusion Matrix') 
+plt.tight_layout() 
+plt.show() 
