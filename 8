@@ -1,0 +1,13 @@
+import numpy as np 
+import matplotlib.pyplot as plt 
+from scipy.cluster.hierarchy import dendrogram, linkage 
+points = np.array([ [1, 2], [2, 3], [3, 3], [8, 7], [8, 8], [25, 80] ]) 
+linked = linkage(points, method='average') 
+plt.figure(figsize=(8, 5)) 
+dendrogram(linked, labels=np.arange(1, len(points)+1), distance_sort='ascending', 
+show_leaf_counts=True) 
+plt. tle('Hierarchical Clustering Dendrogram (Average Linkage)') 
+plt.xlabel('Point Index') 
+plt.ylabel('Distance') 
+plt.grid(True) 
+plt.show() 
