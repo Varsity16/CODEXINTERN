@@ -6,7 +6,7 @@ linked = linkage(points, method='average')
 plt.figure(figsize=(8, 5)) 
 dendrogram(linked, labels=np.arange(1, len(points)+1), distance_sort='ascending', 
 show_leaf_counts=True) 
-plt. tle('Hierarchical Clustering Dendrogram (Average Linkage)') 
+plt.title('Hierarchical Clustering Dendrogram (Average Linkage)') 
 plt.xlabel('Point Index') 
 plt.ylabel('Distance') 
 plt.grid(True) 
