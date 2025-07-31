@@ -1,0 +1,10 @@
+import numpy as np
+from scipy.stats import hmean
+values = np.array([4, 5, 8, 7])
+weights = np.array([2, 3, 1, 4])
+geo_mean = np.prod(values) ** (1 / len(values))
+harm_mean = hmean(values)
+weighted_mean = np.average(values, weights=weights)
+print(f"Geometric Mean: {geo_mean:.2f}")
+print(f"Harmonic Mean: {harm_mean:.2f}")
+print(f"Weighted Mean: {weighted_mean:.2f}")
