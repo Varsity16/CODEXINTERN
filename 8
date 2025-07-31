@@ -1,13 +1,8 @@
-import numpy as np 
-import matplotlib.pyplot as plt 
-from scipy.cluster.hierarchy import dendrogram, linkage 
-points = np.array([ [1, 2], [2, 3], [3, 3], [8, 7], [8, 8], [25, 80] ]) 
-linked = linkage(points, method='average') 
-plt.figure(figsize=(8, 5)) 
-dendrogram(linked, labels=np.arange(1, len(points)+1), distance_sort='ascending', 
-show_leaf_counts=True) 
-plt.title('Hierarchical Clustering Dendrogram (Average Linkage)') 
-plt.xlabel('Point Index') 
-plt.ylabel('Distance') 
-plt.grid(True) 
-plt.show() 
+import numpy as np
+from scipy.stats import pearsonr, spearmanr
+x = np.array([40, 50, 60, 70, 80])
+y = np.array([45, 60, 65, 80, 90])
+pearson_corr, _ = pearsonr(x, y)
+spearman_corr, _ = spearmanr(x, y)
+print(f"Pearson Correlation: {pearson_corr:.2f}")
+print(f"Spearman Correlation: {spearman_corr:.2f}")
