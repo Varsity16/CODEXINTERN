@@ -18,6 +18,8 @@ Type your messages. Examples:
 - /help
 
 
+ API keys should be stored in .env file
+
 """
 from __future__ import annotations
 
